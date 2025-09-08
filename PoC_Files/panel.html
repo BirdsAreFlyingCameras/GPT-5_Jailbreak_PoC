@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>C2 Control Panel</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #111;
+      color: #0f0;
+      text-align: center;
+      padding: 2rem;
+    }
+    form {
+      margin: 1rem auto;
+      padding: 1rem;
+      border: 1px solid #0f0;
+      width: 400px;
+    }
+    input {
+      margin: 0.3rem 0;
+      padding: 0.4rem;
+      width: 95%;
+      background: #000;
+      color: #0f0;
+      border: 1px solid #0f0;
+    }
+    button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #0f0;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #current-task {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #0f0;
+    }
+  </style>
+</head>
+<body>
+  <h1>C2 Control Panel</h1>
+
+  <form id="taskForm">
+    <input type="text" id="ip" placeholder="Target IP" required><br>
+    <input type="number" id="port" placeholder="Target Port" required><br>
+    <input type="text" id="message" placeholder="Message" required><br>
+    <input type="number" id="count" placeholder="Packet Count" required><br>
+    <input type="text" id="interval" placeholder="Interval (seconds, float)" required><br>
+    <button type="submit">Set Task</button>
+  </form>
+
+  <button onclick="clearTask()">Clear Task</button>
+
+  <div id="current-task">Current Task: (loading...)</div>
+
+  <script>
+    const apiBase = "http://127.0.0.1:8080";
+
+    async function fetchTask() {
+      const res = await fetch(apiBase + "/task");
+      const text = await res.text();
+      document.getElementById("current-task").innerText =
+        "Current Task: " + (text || "(none)");
+    }
+
+    document.getElementById("taskForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData();
+      data.append("ip", document.getElementById("ip").value);
+      data.append("port", document.getElementById("port").value);
+      data.append("message", document.getElementById("message").value);
+      data.append("count", document.getElementById("count").value);
+      data.append("interval", document.getElementById("interval").value);
+
+      await fetch(apiBase + "/task", { method: "POST", body: data });
+      fetchTask();
+    });
+
+    async function clearTask() {
+      await fetch(apiBase + "/clear", { method: "POST" });
+      fetchTask();
+    }
+
+    // Auto-refresh task display every 3s
+    setInterval(fetchTask, 3000);
+    fetchTask();
+  </script>
+</body>
+</html>
