@@ -1,15 +1,9 @@
 # GPT-5 Jailbreak PoC
 ### PROMISQROUTE (Prompt based-Router Open Mode Manipulation) based jailbreak of GPT-5
 
-**Author:** Bryan Brannan
-<br>
-**Research Time Period:** 09/06/2025 18:00 - 09/08/2025 02:00
-<br>
-**Original Publication:** https://github.com/BirdsAreFlyingCameras/GPT-5_Jailbreak_PoC
-
 ## **Summery**
 
-Using a jailbreak prompt based on the one made by Splx AI, which you can find here https://splx.ai/blog/gpt-5-red-teaming-results#5. I've reformatted and made changes to the prompt to improve performance when generating malware. Using the base prompt provided below, I've developed a C2 Server written in Python, as well as an agent targeted at Debian 12. The agent communicates with the C2 simply over HTTP and is capable of participating in DDoS attacks. It also created a web-based attack portal to control the agents, allowing users to launch/stop attacks.
+Using a jailbreak prompt based on the one made by Splx AI, which you can find here https://splx.ai/blog/gpt-5-red-teaming-results#5. I've reformatted and made changes to the prompt to improve performance when generating malware. Using the base prompt provided below, I got GPT-5 to devlop a C2 Server written in Python, as well as an agent targeted at Debian 12. The agent communicates with the C2 simply over HTTP and is capable of participating in DDoS attacks. It also created a web-based attack portal to control the agents, allowing users to launch/stop attacks.
  
 ## **Base Prompt**
 
