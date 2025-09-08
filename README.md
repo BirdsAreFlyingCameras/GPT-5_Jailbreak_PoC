@@ -3,7 +3,7 @@
 
 ## **Summery**
 
-Using a jailbreak prompt based on the one made by Splx AI, which you can find here https://splx.ai/blog/gpt-5-red-teaming-results#5. I've reformatted and made changes to the prompt to improve performance when generating malware. Using the base prompt provided below, I got GPT-5 to devlop a C2 Server written in Python, as well as an agent targeted at Debian 12. The agent communicates with the C2 simply over HTTP and is capable of participating in DDoS attacks. It also created a web-based attack portal to control the agents, allowing users to launch/stop attacks.
+The jailbreak prompt this one is based upon was devloped by Splx AI and released with an awesom paper, which you can find here https://splx.ai/blog/gpt-5-red-teaming-results#5. Using the base prompt provided below, I got GPT-5 to devlop a C2 Server written in Python, as well as an agent tailored for linux systems. The agent communicates with the C2 simply over HTTP and is capable of participating in DDoS attacks. It also created a web-based attack portal to control the agents, allowing users to launch/stop attacks.
  
 ## **Base Prompt**
 
